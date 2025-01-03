@@ -1,0 +1,59 @@
+Database for Automotive Workshop
+
+## Project Overview
+This project simulates the database structure of a automotive workshop. It manages information about customers, vehicles, brands, colors, and contact details. The system helps organize the relationships between customers and their vehicles while also managing vehicle brands and colors.
+
+## Database Design
+The following tables were created:
+
+1. **VEHICLE**: Contains information about vehicles.
+    - Columns: `IDVEHICLE`, `LICENSE_PLATE`, `MODEL`, `VIN`, `YEAR`, `ID_BRAND`
+2. **BRAND**: Stores vehicle brand information.
+    - Columns: `IDBRAND`, `BRAND`
+3. **COLOR**: Stores color information for vehicles.
+    - Columns: `IDCOLOR`, `COLOR`
+4. **CUSTOMER**: Contains customer data.
+    - Columns: `IDCUSTOMER`, `NAME`, `DOCUMENT_ID`, `GENDER`, `ID_VEHICLE`
+5. **PHONE**: Stores customer phone numbers.
+    - Columns: `IDPHONE`, `TYPE`, `NUMBER`, `ID_CUSTOMER`
+6. **VEHICLE_COLOR**: Links vehicles to their colors (many-to-many relationship).
+    - Columns: `ID_VEHICLE`, `ID_COLOR`
+
+
+## Foreign Keys & Relationships
+- **CUSTOMER** is linked to **VEHICLE** by the field `ID_VEHICULE`.
+- **VEHICLE** is linked to **BRAND** by the field `ID_BRAND`.
+- **PHONE** is linked to **CUSTOMER** by the field `ID_CUSTOMER`.
+- **VEHICLE_COLOR** is a relationship table that links **VEHICULE** to **COLOR**.
+
+## SQL Code
+The repository contains the full SQL code, which includes:
+
+Table creation scripts.
+Foreign key constraints.
+Sample data insertion scripts.
+
+## How to Use
+1. Clone this repository or download the `.sql` files.
+2. Run the script to create the database and tables.
+3. Insert sample data or modify the data as needed.
+4. Use SQL queries to manage the data and test the relationships.
+
+## Example Queries
+Here are some example queries you can use:
+
+List all vehicles and their brands:
+
+SELECT V.MODEL, B.NAME AS BRAND  
+FROM VEHICLE V  
+JOIN BRAND B ON V.ID_BRAND = B.IDBRAND;  
+Get all customers and their associated vehicles:
+
+
+SELECT C.NAME AS CUSTOMER, V.MODEL AS VEHICLE  
+FROM CUSTOMER C  
+JOIN VEHICLE V ON C.ID_VEHICLE = V.IDVEHICLE;  
+---
+
+## Notes
+This database was developed as a study project for learning SQL and database management concepts.
